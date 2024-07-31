@@ -7,7 +7,17 @@ html {
 	-webkit-animation: rotation 3s infinite linear;
 }
 
+.Boss {
+	animation: rotation 3s infinite linear;
+	-webkit-animation: rotation 3s infinite linear;
+}
+
 .paused .Opponent {
+	animation: none;
+	-webkit-animation: none;
+}
+
+.paused .Boss {
 	animation: none;
 	-webkit-animation: none;
 }

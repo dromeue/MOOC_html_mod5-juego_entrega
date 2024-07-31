@@ -17,6 +17,7 @@ class Player extends Character {
             myImageDead = PLAYER_PICTURE_DEAD;
 
         super(game, width, height, x, y, speed, myImage, myImageDead);
+        this.lives = INIT_LIVES; // Número de vidas inicial
     }
 
     /**
@@ -47,10 +48,23 @@ class Player extends Character {
      */
     collide() {
         if (!this.dead) {
-            setTimeout(() => {
-                this.game.endGame();
-            }, 2000);
-            super.collide();
+            --this.lives;
+            if (this.lives > 0) {
+                super.collide();
+                document.getElementById("livesli").innerHTML = `Lives: ${this.lives}`;
+                setTimeout(() => {
+                    this.image.src = this.myImage;
+                    this.dead = false;
+                }, 2000);
+            }
+            else {
+                document.getElementById("livesli").innerHTML = `Lives: ${this.lives}`;
+                setTimeout(() => {
+                    this.game.endGame();
+                }, 2000);
+    
+                super.collide();
+           }
         }
     }
 }
